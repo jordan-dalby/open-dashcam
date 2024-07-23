@@ -38,3 +38,12 @@ class Camera():
     def end_record(self):
         self.cap.release()
         cv2.destroyAllWindows()
+
+    def list_available_cameras(max_cameras=10):
+        available_cameras = []
+        for i in range(max_cameras):
+            cap = cv2.VideoCapture(i)
+            if cap.isOpened():
+                available_cameras.append(i)
+                cap.release()
+        return available_cameras
