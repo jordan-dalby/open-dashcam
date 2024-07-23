@@ -1,0 +1,356 @@
+2024-07-23 21:58:28,838 - __main__ - INFO - DashCam instance initialized
+2024-07-23 21:58:28,839 - __main__ - INFO - Starting Flask application
+2024-07-23 21:58:29,689 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.4.181:5000
+2024-07-23 21:58:29,690 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-07-23 21:58:35,025 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 21:58:35] "OPTIONS /start HTTP/1.1" 200 -
+2024-07-23 21:58:50,039 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 21:58:50] "OPTIONS /start HTTP/1.1" 200 -
+2024-07-23 22:00:26,791 - root - DEBUG - Logging initialized
+2024-07-23 22:00:26,791 - root - INFO - DashCam instance initialized
+2024-07-23 22:00:26,792 - root - INFO - Starting Flask application
+2024-07-23 22:00:27,654 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.4.181:5000
+2024-07-23 22:00:27,655 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-07-23 22:00:27,657 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:00:27,874 - root - DEBUG - Logging initialized
+2024-07-23 22:00:27,875 - root - INFO - DashCam instance initialized
+2024-07-23 22:00:27,876 - root - INFO - Starting Flask application
+2024-07-23 22:00:27,880 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:00:27,884 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:00:37,967 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:00:37] "OPTIONS /start HTTP/1.1" 200 -
+2024-07-23 22:00:59,292 - werkzeug - INFO -  * Detected change in 'E:\\Google Drive\\vscode-workspace\\open-dashcam\\dashcam.py', reloading
+2024-07-23 22:00:59,314 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:00:59,556 - root - DEBUG - Logging initialized
+2024-07-23 22:00:59,557 - root - INFO - DashCam instance initialized
+2024-07-23 22:00:59,558 - root - INFO - Starting Flask application
+2024-07-23 22:00:59,563 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:00:59,567 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:01:01,118 - root - DEBUG - Logging initialized
+2024-07-23 22:01:01,119 - root - INFO - DashCam instance initialized
+2024-07-23 22:01:01,119 - root - INFO - Starting Flask application
+2024-07-23 22:01:01,979 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.4.181:5000
+2024-07-23 22:01:01,979 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-07-23 22:01:01,983 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:01:02,219 - root - DEBUG - Logging initialized
+2024-07-23 22:01:02,219 - root - INFO - DashCam instance initialized
+2024-07-23 22:01:02,221 - root - INFO - Starting Flask application
+2024-07-23 22:01:02,226 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:01:02,230 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:01:04,252 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:01:04] "OPTIONS /start HTTP/1.1" 200 -
+2024-07-23 22:01:10,664 - werkzeug - INFO -  * Detected change in 'E:\\Google Drive\\vscode-workspace\\open-dashcam\\dashcam.py', reloading
+2024-07-23 22:01:10,691 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:01:10,918 - root - DEBUG - Logging initialized
+2024-07-23 22:01:10,919 - root - INFO - DashCam instance initialized
+2024-07-23 22:01:10,921 - root - INFO - Starting Flask application
+2024-07-23 22:01:10,925 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:01:10,931 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:01:38,616 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:01:38] "OPTIONS /start HTTP/1.1" 200 -
+2024-07-23 22:01:39,618 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:01:39] "OPTIONS /start HTTP/1.1" 200 -
+2024-07-23 22:01:40,113 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:01:40] "OPTIONS /start HTTP/1.1" 200 -
+2024-07-23 22:02:52,260 - werkzeug - INFO -  * Detected change in 'E:\\Google Drive\\vscode-workspace\\open-dashcam\\dashcam.py', reloading
+2024-07-23 22:02:52,288 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:02:53,592 - root - DEBUG - Logging initialized
+2024-07-23 22:02:53,592 - dashcam - INFO - DashCam instance initialized
+2024-07-23 22:02:53,593 - dashcam - INFO - Starting Flask application
+2024-07-23 22:02:54,461 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.4.181:5000
+2024-07-23 22:02:54,461 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-07-23 22:02:54,464 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:02:54,678 - root - DEBUG - Logging initialized
+2024-07-23 22:02:54,679 - dashcam - INFO - DashCam instance initialized
+2024-07-23 22:02:54,680 - dashcam - INFO - Starting Flask application
+2024-07-23 22:02:54,684 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:02:54,688 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:02:57,470 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:02:57] "OPTIONS /start HTTP/1.1" 200 -
+2024-07-23 22:03:13,572 - werkzeug - INFO -  * Detected change in 'E:\\Google Drive\\vscode-workspace\\open-dashcam\\dashcam.py', reloading
+2024-07-23 22:03:13,599 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:04:15,175 - dashcam - INFO - Logging initialized
+2024-07-23 22:04:15,176 - dashcam - INFO - DashCam instance initialized
+2024-07-23 22:04:15,177 - dashcam - INFO - Starting Flask application
+2024-07-23 22:04:16,040 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.4.181:5000
+2024-07-23 22:04:16,041 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-07-23 22:04:16,044 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:04:16,264 - dashcam - INFO - Logging initialized
+2024-07-23 22:04:16,265 - dashcam - INFO - DashCam instance initialized
+2024-07-23 22:04:16,266 - dashcam - INFO - Starting Flask application
+2024-07-23 22:04:16,270 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:04:16,275 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:04:21,379 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:04:21] "OPTIONS /start HTTP/1.1" 200 -
+2024-07-23 22:04:22,877 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:04:22] "OPTIONS /start HTTP/1.1" 200 -
+2024-07-23 22:04:44,581 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:04:44] "OPTIONS /start HTTP/1.1" 200 -
+2024-07-23 22:05:09,481 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:05:09] "OPTIONS /stop HTTP/1.1" 200 -
+2024-07-23 22:06:21,790 - werkzeug - INFO -  * Detected change in 'E:\\Google Drive\\vscode-workspace\\open-dashcam\\dashcam-test.py', reloading
+2024-07-23 22:06:21,820 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:06:22,084 - dashcam - INFO - Logging initialized
+2024-07-23 22:06:22,085 - dashcam - INFO - DashCam instance initialized
+2024-07-23 22:06:22,086 - dashcam - INFO - Starting Flask application
+2024-07-23 22:06:22,091 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:06:22,094 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:08:47,309 - dashcam - INFO - Logging initialized
+2024-07-23 22:08:47,309 - dashcam - INFO - DashCam instance initialized
+2024-07-23 22:08:47,310 - dashcam - INFO - Starting Flask application
+2024-07-23 22:08:48,177 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.4.181:5000
+2024-07-23 22:08:48,178 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-07-23 22:08:48,181 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:08:48,423 - dashcam - INFO - Logging initialized
+2024-07-23 22:08:48,423 - dashcam - INFO - DashCam instance initialized
+2024-07-23 22:08:48,424 - dashcam - INFO - Starting Flask application
+2024-07-23 22:08:48,429 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:08:48,433 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:08:49,940 - dashcam - INFO - Received start recording request
+2024-07-23 22:08:49,940 - dashcam - INFO - Entering _record method
+2024-07-23 22:08:49,940 - dashcam - INFO - Recording started
+2024-07-23 22:08:49,941 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:08:49] "POST /start HTTP/1.1" 200 -
+2024-07-23 22:08:53,962 - dashcam - INFO - Managing storage
+2024-07-23 22:08:53,963 - dashcam - INFO - Creating new video file: dashcam_20240723-220853.mp4
+2024-07-23 22:09:29,345 - werkzeug - INFO -  * Detected change in 'E:\\Google Drive\\vscode-workspace\\open-dashcam\\dashcam.py', reloading
+2024-07-23 22:09:29,416 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:09:29,673 - root - DEBUG - Logging initialized
+2024-07-23 22:09:29,674 - root - INFO - DashCam instance initialized
+2024-07-23 22:09:29,675 - root - INFO - Starting Flask application
+2024-07-23 22:09:29,681 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:09:29,685 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:09:41,769 - root - DEBUG - Logging initialized
+2024-07-23 22:09:41,770 - root - INFO - DashCam instance initialized
+2024-07-23 22:09:41,771 - root - INFO - Starting Flask application
+2024-07-23 22:09:42,628 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.4.181:5000
+2024-07-23 22:09:42,628 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-07-23 22:09:42,631 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:09:42,885 - root - DEBUG - Logging initialized
+2024-07-23 22:09:42,886 - root - INFO - DashCam instance initialized
+2024-07-23 22:09:42,887 - root - INFO - Starting Flask application
+2024-07-23 22:09:42,893 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:09:42,898 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:09:47,703 - root - DEBUG - Received start recording request
+2024-07-23 22:09:47,703 - root - DEBUG - Entering _record method
+2024-07-23 22:09:47,703 - root - INFO - Recording started
+2024-07-23 22:09:47,704 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:09:47] "POST /start HTTP/1.1" 200 -
+2024-07-23 22:09:50,209 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:09:50] "[31m[1mPOST /status HTTP/1.1[0m" 405 -
+2024-07-23 22:09:51,912 - root - DEBUG - Managing storage
+2024-07-23 22:09:51,913 - root - DEBUG - Creating new video file: dashcam_20240723-220951.mp4
+2024-07-23 22:10:00,720 - root - DEBUG - Received status request
+2024-07-23 22:10:00,720 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:10:00] "GET /status HTTP/1.1" 200 -
+2024-07-23 22:10:18,994 - root - DEBUG - Received stop recording request
+2024-07-23 22:10:18,995 - root - INFO - Recording stopped
+2024-07-23 22:10:18,995 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:10:18] "POST /stop HTTP/1.1" 200 -
+2024-07-23 22:10:19,011 - root - DEBUG - Clip dashcam_20240723-220951.mp4 completed. Frames written: 795
+2024-07-23 22:10:19,370 - root - DEBUG - Exiting _record method
+2024-07-23 22:10:23,372 - root - DEBUG - Received start recording request
+2024-07-23 22:10:23,372 - root - DEBUG - Entering _record method
+2024-07-23 22:10:23,372 - root - INFO - Recording started
+2024-07-23 22:10:23,373 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:10:23] "POST /start HTTP/1.1" 200 -
+2024-07-23 22:10:27,639 - root - DEBUG - Managing storage
+2024-07-23 22:10:27,640 - root - DEBUG - Creating new video file: dashcam_20240723-221027.mp4
+2024-07-23 22:10:42,636 - werkzeug - INFO -  * Detected change in 'E:\\Google Drive\\vscode-workspace\\open-dashcam\\dashcam.py', reloading
+2024-07-23 22:10:42,709 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:10:42,939 - root - DEBUG - Logging initialized
+2024-07-23 22:10:42,940 - root - INFO - DashCam instance initialized
+2024-07-23 22:10:42,941 - root - INFO - Starting Flask application
+2024-07-23 22:10:42,945 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:10:42,950 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:10:46,229 - root - DEBUG - Logging initialized
+2024-07-23 22:10:46,230 - root - INFO - DashCam instance initialized
+2024-07-23 22:10:46,231 - root - INFO - Starting Flask application
+2024-07-23 22:10:47,099 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.4.181:5000
+2024-07-23 22:10:47,100 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-07-23 22:10:47,103 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:10:47,349 - root - DEBUG - Logging initialized
+2024-07-23 22:10:47,350 - root - INFO - DashCam instance initialized
+2024-07-23 22:10:47,351 - root - INFO - Starting Flask application
+2024-07-23 22:10:47,356 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:10:47,360 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:10:49,607 - root - DEBUG - Received start recording request
+2024-07-23 22:10:49,607 - root - DEBUG - Entering _record method
+2024-07-23 22:10:49,607 - root - INFO - Recording started
+2024-07-23 22:10:49,607 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:10:49] "POST /start HTTP/1.1" 200 -
+2024-07-23 22:10:53,699 - root - DEBUG - Managing storage
+2024-07-23 22:10:53,699 - root - DEBUG - Creating new video file: dashcam_20240723-221053.mp4
+2024-07-23 22:11:03,713 - root - DEBUG - Clip dashcam_20240723-221053.mp4 completed. Frames written: 282
+2024-07-23 22:11:03,714 - root - DEBUG - Managing storage
+2024-07-23 22:11:03,714 - root - DEBUG - Creating new video file: dashcam_20240723-221103.mp4
+2024-07-23 22:11:13,728 - root - DEBUG - Clip dashcam_20240723-221103.mp4 completed. Frames written: 301
+2024-07-23 22:11:13,728 - root - DEBUG - Managing storage
+2024-07-23 22:11:13,728 - root - DEBUG - Creating new video file: dashcam_20240723-221113.mp4
+2024-07-23 22:11:15,068 - root - DEBUG - Received stop recording request
+2024-07-23 22:11:15,068 - root - INFO - Recording stopped
+2024-07-23 22:11:15,069 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:11:15] "POST /stop HTTP/1.1" 200 -
+2024-07-23 22:11:15,074 - root - DEBUG - Clip dashcam_20240723-221113.mp4 completed. Frames written: 41
+2024-07-23 22:11:15,431 - root - DEBUG - Exiting _record method
+2024-07-23 22:11:45,011 - root - DEBUG - Received start recording request
+2024-07-23 22:11:45,012 - root - DEBUG - Entering _record method
+2024-07-23 22:11:45,012 - root - INFO - Recording started
+2024-07-23 22:11:45,012 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:11:45] "POST /start HTTP/1.1" 200 -
+2024-07-23 22:11:48,997 - root - DEBUG - Managing storage
+2024-07-23 22:11:48,998 - root - DEBUG - Creating new video file: dashcam_20240723-221148.mp4
+2024-07-23 22:11:59,009 - root - DEBUG - Clip dashcam_20240723-221148.mp4 completed. Frames written: 284
+2024-07-23 22:11:59,010 - root - DEBUG - Managing storage
+2024-07-23 22:11:59,010 - root - DEBUG - Creating new video file: dashcam_20240723-221159.mp4
+2024-07-23 22:12:05,616 - root - DEBUG - Received stop recording request
+2024-07-23 22:12:05,617 - root - INFO - Recording stopped
+2024-07-23 22:12:05,617 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:12:05] "POST /stop HTTP/1.1" 200 -
+2024-07-23 22:12:05,621 - root - DEBUG - Clip dashcam_20240723-221159.mp4 completed. Frames written: 198
+2024-07-23 22:12:06,023 - root - DEBUG - Exiting _record method
+2024-07-23 22:13:04,244 - werkzeug - INFO -  * Detected change in 'E:\\Google Drive\\vscode-workspace\\open-dashcam\\dashcam.py', reloading
+2024-07-23 22:13:04,326 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:13:04,552 - root - DEBUG - Logging initialized
+2024-07-23 22:13:04,553 - root - INFO - DashCam instance initialized
+2024-07-23 22:13:04,554 - root - INFO - Starting Flask application
+2024-07-23 22:13:04,558 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:13:04,562 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:13:07,788 - werkzeug - INFO -  * Detected change in 'E:\\Google Drive\\vscode-workspace\\open-dashcam\\dashcam.py', reloading
+2024-07-23 22:13:07,815 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:13:08,043 - root - DEBUG - Logging initialized
+2024-07-23 22:13:08,043 - root - INFO - DashCam instance initialized
+2024-07-23 22:13:08,044 - root - INFO - Starting Flask application
+2024-07-23 22:13:08,048 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:13:08,052 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:13:18,576 - werkzeug - INFO -  * Detected change in 'E:\\Google Drive\\vscode-workspace\\open-dashcam\\dashcam.py', reloading
+2024-07-23 22:13:18,604 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:13:18,866 - root - DEBUG - Logging initialized
+2024-07-23 22:13:18,867 - root - INFO - DashCam instance initialized
+2024-07-23 22:13:18,868 - root - INFO - Starting Flask application
+2024-07-23 22:13:18,874 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:13:18,879 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:16:01,087 - werkzeug - INFO -  * Detected change in 'E:\\Google Drive\\vscode-workspace\\open-dashcam\\src\\model.py', reloading
+2024-07-23 22:16:01,113 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:16:01,349 - root - DEBUG - Logging initialized
+2024-07-23 22:16:01,351 - root - INFO - DashCam instance initialized
+2024-07-23 22:16:01,351 - root - INFO - Starting Flask application
+2024-07-23 22:16:01,356 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:16:01,361 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:16:16,096 - werkzeug - INFO -  * Detected change in 'E:\\Google Drive\\vscode-workspace\\open-dashcam\\src\\view.py', reloading
+2024-07-23 22:16:16,134 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:16:16,409 - root - DEBUG - Logging initialized
+2024-07-23 22:16:16,410 - root - INFO - DashCam instance initialized
+2024-07-23 22:16:16,411 - root - INFO - Starting Flask application
+2024-07-23 22:16:16,417 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:16:16,421 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:16:26,964 - werkzeug - INFO -  * Detected change in 'E:\\Google Drive\\vscode-workspace\\open-dashcam\\src\\presenter.py', reloading
+2024-07-23 22:16:26,995 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:16:27,308 - root - DEBUG - Logging initialized
+2024-07-23 22:16:27,309 - root - INFO - DashCam instance initialized
+2024-07-23 22:16:27,310 - root - INFO - Starting Flask application
+2024-07-23 22:16:27,317 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:16:27,321 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:16:36,823 - werkzeug - INFO -  * Detected change in 'E:\\Google Drive\\vscode-workspace\\open-dashcam\\src\\main.py', reloading
+2024-07-23 22:16:36,854 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:16:37,146 - root - DEBUG - Logging initialized
+2024-07-23 22:16:37,147 - root - INFO - DashCam instance initialized
+2024-07-23 22:16:37,148 - root - INFO - Starting Flask application
+2024-07-23 22:16:37,156 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:16:37,161 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:16:49,783 - root - DEBUG - Logging initialized
+2024-07-23 22:16:49,784 - root - INFO - Starting Flask application
+2024-07-23 22:16:50,643 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.4.181:5000
+2024-07-23 22:16:50,644 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-07-23 22:16:50,647 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:16:50,873 - root - DEBUG - Logging initialized
+2024-07-23 22:16:50,875 - root - INFO - Starting Flask application
+2024-07-23 22:16:50,879 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:16:50,882 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:17:04,645 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:17:04] "[35m[1mGET /status HTTP/1.1[0m" 500 -
+2024-07-23 22:18:18,719 - werkzeug - INFO -  * Detected change in 'E:\\Google Drive\\vscode-workspace\\open-dashcam\\src\\view.py', reloading
+2024-07-23 22:18:18,750 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:18:19,008 - root - DEBUG - Logging initialized
+2024-07-23 22:18:19,009 - root - INFO - Starting Flask application
+2024-07-23 22:18:19,014 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:18:19,019 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:18:20,599 - root - DEBUG - Logging initialized
+2024-07-23 22:18:20,601 - root - INFO - Starting Flask application
+2024-07-23 22:18:21,459 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.4.181:5000
+2024-07-23 22:18:21,459 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-07-23 22:18:21,462 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:18:21,698 - root - DEBUG - Logging initialized
+2024-07-23 22:18:21,700 - root - INFO - Starting Flask application
+2024-07-23 22:18:21,705 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:18:21,710 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:18:23,141 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:18:23] "[35m[1mGET /status HTTP/1.1[0m" 500 -
+2024-07-23 22:18:46,895 - werkzeug - INFO -  * Detected change in 'E:\\Google Drive\\vscode-workspace\\open-dashcam\\src\\view.py', reloading
+2024-07-23 22:18:46,923 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:18:47,175 - root - DEBUG - Logging initialized
+2024-07-23 22:22:12,728 - root - DEBUG - Logging initialized
+2024-07-23 22:22:59,938 - root - DEBUG - Logging initialized
+2024-07-23 22:22:59,940 - root - INFO - Starting Flask application
+2024-07-23 22:23:00,802 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.4.181:5000
+2024-07-23 22:23:00,803 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-07-23 22:23:00,805 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:23:01,047 - root - DEBUG - Logging initialized
+2024-07-23 22:23:01,048 - root - INFO - Starting Flask application
+2024-07-23 22:23:01,054 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:23:01,058 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:23:03,759 - root - DEBUG - Received status request
+2024-07-23 22:23:03,759 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:23:03] "GET /status HTTP/1.1" 200 -
+2024-07-23 22:23:07,608 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:23:07] "[31m[1mGET /start HTTP/1.1[0m" 405 -
+2024-07-23 22:23:13,026 - root - DEBUG - Received start recording request
+2024-07-23 22:23:13,026 - root - DEBUG - Entering _record method
+2024-07-23 22:23:13,026 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:23:13] "POST /start HTTP/1.1" 200 -
+2024-07-23 22:23:17,070 - root - DEBUG - Managing storage
+2024-07-23 22:23:17,070 - root - DEBUG - Creating new video file: dashcam_20240723-222317.mp4
+2024-07-23 22:23:33,063 - root - DEBUG - Received stop recording request
+2024-07-23 22:23:33,064 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:23:33] "POST /stop HTTP/1.1" 200 -
+2024-07-23 22:23:33,085 - root - DEBUG - Clip dashcam_20240723-222317.mp4 completed. Frames written: 462
+2024-07-23 22:23:33,515 - root - DEBUG - Exiting _record method
+2024-07-23 22:32:19,799 - werkzeug - INFO -  * Detected change in 'E:\\Google Drive\\vscode-workspace\\open-dashcam\\src\\presenter.py', reloading
+2024-07-23 22:32:19,868 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:32:20,160 - root - DEBUG - Logging initialized
+2024-07-23 22:32:20,160 - root - INFO - Created recordings folder: recordings
+2024-07-23 22:32:20,162 - root - INFO - Starting Flask application
+2024-07-23 22:32:20,168 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:32:20,173 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:32:41,183 - werkzeug - INFO -  * Detected change in 'E:\\Google Drive\\vscode-workspace\\open-dashcam\\src\\presenter.py', reloading
+2024-07-23 22:32:41,215 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:32:41,468 - root - DEBUG - Logging initialized
+2024-07-23 22:32:41,471 - root - INFO - Starting Flask application
+2024-07-23 22:32:41,476 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:32:41,481 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:32:49,290 - root - DEBUG - Logging initialized
+2024-07-23 22:32:49,291 - root - INFO - Starting Flask application
+2024-07-23 22:32:50,163 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.4.181:5000
+2024-07-23 22:32:50,163 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-07-23 22:32:50,167 - werkzeug - INFO -  * Restarting with stat
+2024-07-23 22:32:50,429 - root - DEBUG - Logging initialized
+2024-07-23 22:32:50,431 - root - INFO - Starting Flask application
+2024-07-23 22:32:50,436 - werkzeug - WARNING -  * Debugger is active!
+2024-07-23 22:32:50,441 - werkzeug - INFO -  * Debugger PIN: 136-007-639
+2024-07-23 22:32:52,059 - root - DEBUG - Received start recording request
+2024-07-23 22:32:52,060 - root - DEBUG - Entering _record method
+2024-07-23 22:32:52,060 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:32:52] "POST /start HTTP/1.1" 200 -
+2024-07-23 22:32:56,383 - root - DEBUG - Managing storage
+2024-07-23 22:32:56,383 - root - DEBUG - Creating new video file: recordings\dashcam_20240723-223256.mp4
+2024-07-23 22:33:19,957 - root - DEBUG - Received stop recording request
+2024-07-23 22:33:19,958 - werkzeug - INFO - 192.168.4.181 - - [23/Jul/2024 22:33:19] "POST /stop HTTP/1.1" 200 -
+2024-07-23 22:33:20,005 - root - DEBUG - Clip recordings\dashcam_20240723-223256.mp4 completed. Frames written: 689
+2024-07-23 22:33:20,457 - root - DEBUG - Exiting _record method
