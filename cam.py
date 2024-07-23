@@ -41,7 +41,7 @@ class Camera():
 
     def list_available_cameras(max_cameras=10):
         available_cameras = []
-        for i in range(max_cameras):
+        for i in range(0, 2):
             cap = cv2.VideoCapture(i)
             if cap.isOpened():
                 available_cameras.append(i)
