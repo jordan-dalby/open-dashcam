@@ -38,3 +38,39 @@
 2024-07-24 17:30:56,968 - werkzeug - INFO - 172.19.0.1 - - [24/Jul/2024 17:30:56] "[31m[1mPOST /status HTTP/1.1[0m" 405 -
 2024-07-24 17:31:00,338 - root - DEBUG - Received stop recording request
 2024-07-24 17:31:00,339 - werkzeug - INFO - 172.19.0.1 - - [24/Jul/2024 17:31:00] "[31m[1mPOST /stop HTTP/1.1[0m" 400 -
+2024-07-24 17:50:02,370 - root - DEBUG - Logging initialized
+2024-07-24 17:50:02,373 - root - INFO - Starting Flask application
+2024-07-24 17:50:02,380 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.18.0.2:5000
+2024-07-24 17:50:02,380 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-07-24 17:50:02,381 - werkzeug - INFO -  * Restarting with stat
+2024-07-24 17:50:02,582 - root - DEBUG - Logging initialized
+2024-07-24 17:50:02,586 - root - INFO - Starting Flask application
+2024-07-24 17:50:02,590 - werkzeug - WARNING -  * Debugger is active!
+2024-07-24 17:50:02,591 - werkzeug - INFO -  * Debugger PIN: 679-804-013
+2024-07-24 17:54:31,174 - root - DEBUG - Logging initialized
+2024-07-24 17:54:31,177 - root - INFO - Starting Flask application
+2024-07-24 17:54:31,183 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.18.0.2:5000
+2024-07-24 17:54:31,184 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-07-24 17:54:31,185 - werkzeug - INFO -  * Restarting with stat
+2024-07-24 17:54:31,402 - root - DEBUG - Logging initialized
+2024-07-24 17:54:31,404 - root - INFO - Starting Flask application
+2024-07-24 17:54:31,408 - werkzeug - WARNING -  * Debugger is active!
+2024-07-24 17:54:31,408 - werkzeug - INFO -  * Debugger PIN: 127-062-984
+2024-07-24 17:55:38,167 - root - DEBUG - Logging initialized
+2024-07-24 17:55:38,170 - root - INFO - Starting Flask application
+2024-07-24 17:55:38,176 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.18.0.2:5000
+2024-07-24 17:55:38,177 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-07-24 17:55:38,177 - werkzeug - INFO -  * Restarting with stat
+2024-07-24 17:55:38,372 - root - DEBUG - Logging initialized
+2024-07-24 17:55:38,375 - root - INFO - Starting Flask application
+2024-07-24 17:55:38,378 - werkzeug - WARNING -  * Debugger is active!
+2024-07-24 17:55:38,379 - werkzeug - INFO -  * Debugger PIN: 668-835-178

@@ -3,8 +3,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: opendashcam
     ports:
       - 5000:5000
     volumes:
       - ./src:/app
     command: python /app/main.py
+    devices:
+      - /dev/video0:/dev/video0
