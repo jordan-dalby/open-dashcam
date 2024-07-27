@@ -12,6 +12,10 @@ class DashCamView:
         self.app.route('/status', methods=['GET'])(self.presenter.get_status)
         self.app.route('/set_quality', methods=['POST'])(self.presenter.set_quality)
         self.app.route('/set_storage_limit', methods=['POST'])(self.presenter.set_storage_limit)
+        self.app.route('/set_camera_controls', methods=['POST'])(self.presenter.set_camera_controls)
+        self.app.route('/recordings', methods=['GET'])(self.presenter.get_recordings)
+        self.app.route('/delete_recording', methods=['POST'])(self.presenter.delete_recording)
 
     def run(self, host, port, debug):
-        self.app.run(host=host, port=port, debug=debug)
+        from waitress import serve
+        serve(self.app, host=host, port=port)
