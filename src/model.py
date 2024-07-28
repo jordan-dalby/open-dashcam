@@ -1,13 +1,11 @@
 from picamera2 import Picamera2
-from picamera2.encoders import H264Encoder
-from picamera2.outputs import FfmpegOutput
 from threading import Event
 
 class DashCamModel:
     def __init__(self):
         self.is_recording = False
         self.stop_event = Event()
-        self.picam2 = Picamera2()
+        self.picam2 = None
         self.encoder = None
         self.output = None
         self.clip_duration = 3 * 60  # 3 minutes per clip
@@ -28,11 +26,26 @@ class DashCamModel:
             'AwbMode': 0,  # 0 for auto
             'NoiseReductionMode': 2  # 2 for fast
         }
+        self.initialize_camera()
+
+    def initialize_camera(self):
+        if self.picam2 is None:
+            self.picam2 = Picamera2()
+            video_config = self.picam2.create_video_configuration(
+                main={"size": self.video_quality['resolution']},
+                controls={"FrameRate": self.video_quality['fps']}
+            )
+            self.picam2.configure(video_config)
+            self.picam2.set_controls(self.camera_controls)
+            self.picam2.start_preview()
 
     def start_recording(self):
         if not self.is_recording:
             self.is_recording = True
             self.stop_event.clear()
+            if not self.picam2.started:
+                self.picam2.start()
+                time.sleep(0.1)  # Short delay to ensure camera is ready
             return True
         return False
 
@@ -52,10 +65,33 @@ class DashCamModel:
             self.video_quality['bitrate'] = bitrate
         return self.video_quality
 
+    def set_video_quality(self, resolution=None, fps=None, bitrate=None):
+        if resolution:
+            self.video_quality['resolution'] = tuple(resolution)
+        if fps:
+            self.video_quality['fps'] = fps
+        if bitrate:
+            self.video_quality['bitrate'] = bitrate
+        
+        # Reconfigure camera if it's already initialized
+        if self.picam2:
+            video_config = self.picam2.create_video_configuration(
+                main={"size": self.video_quality['resolution']},
+                controls={"FrameRate": self.video_quality['fps']}
+            )
+            self.picam2.configure(video_config)
+        
+        return self.video_quality
+
     def set_camera_controls(self, **kwargs):
         for key, value in kwargs.items():
             if key in self.camera_controls:
                 self.camera_controls[key] = value
+        
+        # Apply new controls if camera is already initialized
+        if self.picam2:
+            self.picam2.set_controls(self.camera_controls)
+        
         return self.camera_controls
 
     def set_storage_limit(self, limit):

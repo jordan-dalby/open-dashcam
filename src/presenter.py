@@ -71,16 +71,6 @@ class DashCamPresenter:
     def _record(self):
         self.logger.debug("Entering _record method")
         try:
-            # Configure camera
-            video_config = self.model.picam2.create_video_configuration(
-                main={"size": self.model.video_quality['resolution']},
-                controls={"FrameRate": self.model.video_quality['fps']}
-            )
-            self.model.picam2.configure(video_config)
-            
-            # Apply camera controls
-            #self.model.picam2.set_controls(self.model.camera_controls)
-            
             while not self.model.stop_event.is_set():
                 self._manage_storage()
                 timestamp = time.strftime("%Y%m%d-%H%M%S")
@@ -98,9 +88,6 @@ class DashCamPresenter:
                 
                 self.model.picam2.stop_recording()
                 self.logger.debug(f"Clip {output_file} completed.")
-                
-                # Check if we need to update camera settings
-                self._update_camera_settings()
         
         except Exception as e:
             self.logger.error(f"Error in recording: {str(e)}")

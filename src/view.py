@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask
 
 class DashCamView:
     def __init__(self, presenter):
