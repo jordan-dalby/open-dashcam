@@ -2,9 +2,7 @@ import os
 import cv2
 import time
 from threading import Thread
-from model import TimestampOutput
 from flask import jsonify, request
-from picamera2 import MappedArray
 from picamera2.outputs import FfmpegOutput
 from picamera2.encoders import H264Encoder
 
@@ -76,7 +74,7 @@ class DashCamPresenter:
         try:
             def apply_timestamp(request):
                 timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
-                with MappedArray(request, "main") as m:
+                with request.make_array("main") as m:
                     cv2.putText(m.array, timestamp, (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
 
             # Apply the overlay function
@@ -95,6 +93,10 @@ class DashCamPresenter:
                 
                 start_time = time.time()
                 while time.time() - start_time < self.model.clip_duration and not self.model.stop_event.is_set():
+                    if int(time.time()) % 10 == 0:  # Log every 10 seconds
+                        exposure = self.model.picam2.capture_metadata()['ExposureTime']
+                        focus = self.model.picam2.capture_metadata()['LensPosition']
+                        self.logger.debug(f"Current exposure: {exposure}, focus: {focus}")
                     time.sleep(1)  # Sleep for 1 second to reduce CPU usage
                 
                 self.model.picam2.stop_recording()

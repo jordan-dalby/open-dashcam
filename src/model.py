@@ -1,5 +1,6 @@
-from picamera2 import Picamera2
+from picamera2 import Picamera2, Preview
 from picamera2.outputs import Output
+from libcamera import controls
 from threading import Event
 import time
 
@@ -35,11 +36,18 @@ class DashCamModel:
             self.picam2 = Picamera2()
             video_config = self.picam2.create_video_configuration(
                 main={"size": self.video_quality['resolution']},
-                controls={"FrameRate": self.video_quality['fps']}
+                controls={
+                    "FrameRate": self.video_quality['fps'],
+                    "AeEnable": True,  # Enable auto-exposure
+                    "AeMeteringMode": controls.AeMeteringModeEnum.Matrix,
+                    "AfMode": controls.AfModeEnum.Continuous,  # Enable continuous auto-focus
+                    "AwbEnable": True,  # Enable auto white balance
+                    "AwbMode": controls.AwbModeEnum.Auto
+                }
             )
             self.picam2.configure(video_config)
             self.picam2.set_controls(self.camera_controls)
-            self.picam2.start_preview()
+            self.picam2.start_preview(Preview.NULL)
 
     def start_recording(self):
         if not self.is_recording:
@@ -47,7 +55,7 @@ class DashCamModel:
             self.stop_event.clear()
             if not self.picam2.started:
                 self.picam2.start()
-                time.sleep(0.1)  # Short delay to ensure camera is ready
+                time.sleep(2)  # Allow auto focus and exposure to settle
             return True
         return False
 
@@ -106,23 +114,3 @@ class DashCamModel:
             "camera_controls": self.camera_controls,
             "storage_limit": self.storage_limit
         }
-
-class TimestampOutput(Output):
-    def __init__(self, file_output):
-        super().__init__()
-        self.file_output = file_output
-        self.start_time = None
-
-    def start(self):
-        self.start_time = time.time()
-        self.file_output.start()
-
-    def stop(self):
-        self.file_output.stop()
-
-    def outputframe(self, frame, keyframe=True, timestamp=None):
-        if timestamp is None:
-            if self.start_time is None:
-                self.start_time = time.time()
-            timestamp = int((time.time() - self.start_time) * 1000000)
-        self.file_output.outputframe(frame, keyframe, timestamp)
