@@ -94,10 +94,6 @@ class DashCamPresenter:
                 
                 start_time = time.time()
                 while time.time() - start_time < self.model.clip_duration and not self.model.stop_event.is_set():
-                    if int(time.time()) % 10 == 0:  # Log every 10 seconds
-                        exposure = self.model.picam2.capture_metadata()['ExposureTime']
-                        focus = self.model.picam2.capture_metadata()['LensPosition']
-                        self.logger.debug(f"Current exposure: {exposure}, focus: {focus}")
                     time.sleep(1)  # Sleep for 1 second to reduce CPU usage
                 
                 self.model.picam2.stop_recording()
