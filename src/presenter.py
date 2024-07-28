@@ -3,6 +3,7 @@ import cv2
 import time
 from threading import Thread
 from flask import jsonify, request
+from picamera2 import MappedArray
 from picamera2.outputs import FfmpegOutput
 from picamera2.encoders import H264Encoder
 
@@ -74,7 +75,7 @@ class DashCamPresenter:
         try:
             def apply_timestamp(request):
                 timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
-                with request.make_array("main") as m:
+                with MappedArray(request, "main") as m:
                     cv2.putText(m.array, timestamp, (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
 
             # Apply the overlay function
