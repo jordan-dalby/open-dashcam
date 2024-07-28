@@ -1,6 +1,7 @@
 from picamera2 import Picamera2, Preview
 from threading import Event
 import time
+import logging
 
 class DashCamModel:
     def __init__(self):
@@ -26,6 +27,7 @@ class DashCamModel:
             'AeEnable': True,  # Enable auto-exposure
             'AwbEnable': True,  # Enable auto white balance
         }
+        self.logger = logging.getLogger(__name__)
         self.initialize_camera()
 
     def initialize_camera(self):
