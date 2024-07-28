@@ -4,6 +4,8 @@ from flask import jsonify, request
 from threading import Thread
 from picamera2.encoders import H264Encoder
 from picamera2.outputs import FfmpegOutput
+from picamera2 import MappedArray
+import cv2
 
 class DashCamPresenter:
     def __init__(self, model, logger):
@@ -71,6 +73,14 @@ class DashCamPresenter:
     def _record(self):
         self.logger.debug("Entering _record method")
         try:
+            def apply_timestamp(request):
+                timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
+                with MappedArray(request, "main") as m:
+                    cv2.putText(m.array, timestamp, (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
+
+            # Apply the overlay function
+            self.model.picam2.pre_callback = apply_timestamp
+
             while not self.model.stop_event.is_set():
                 self._manage_storage()
                 timestamp = time.strftime("%Y%m%d-%H%M%S")
