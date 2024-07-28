@@ -1,4 +1,5 @@
 from picamera2 import Picamera2
+from picamera2.outputs import Output
 from threading import Event
 import time
 
@@ -105,3 +106,23 @@ class DashCamModel:
             "camera_controls": self.camera_controls,
             "storage_limit": self.storage_limit
         }
+
+class TimestampOutput(Output):
+    def __init__(self, file_output):
+        super().__init__()
+        self.file_output = file_output
+        self.start_time = None
+
+    def start(self):
+        self.start_time = time.time()
+        self.file_output.start()
+
+    def stop(self):
+        self.file_output.stop()
+
+    def outputframe(self, frame, keyframe=True, timestamp=None):
+        if timestamp is None:
+            if self.start_time is None:
+                self.start_time = time.time()
+            timestamp = int((time.time() - self.start_time) * 1000000)
+        self.file_output.outputframe(frame, keyframe, timestamp)

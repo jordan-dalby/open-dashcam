@@ -1,11 +1,12 @@
 import os
-import time
-from flask import jsonify, request
-from threading import Thread
-from picamera2.encoders import H264Encoder
-from picamera2.outputs import FfmpegOutput
-from picamera2 import MappedArray
 import cv2
+import time
+from threading import Thread
+from model import TimestampOutput
+from flask import jsonify, request
+from picamera2 import MappedArray
+from picamera2.outputs import FfmpegOutput
+from picamera2.encoders import H264Encoder
 
 class DashCamPresenter:
     def __init__(self, model, logger):
@@ -75,7 +76,9 @@ class DashCamPresenter:
         try:
             def apply_timestamp(request):
                 timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
-                with MappedArray(request, "main") as m:
+                with request.picam2.controls as controls:
+                    controls.FrameRate = self.model.video_quality['fps']
+                with request.mmap(MappedArray.MAIN) as m:
                     cv2.putText(m.array, timestamp, (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
 
             # Apply the overlay function
@@ -88,7 +91,8 @@ class DashCamPresenter:
                 self.logger.debug(f"Creating new video file: {output_file}")
                 
                 encoder = H264Encoder(bitrate=self.model.video_quality['bitrate'])
-                output = FfmpegOutput(output_file)
+                file_output = FfmpegOutput(output_file)
+                output = TimestampOutput(file_output)
 
                 self.model.picam2.start_recording(encoder, output)
                 
