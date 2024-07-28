@@ -26,7 +26,13 @@ if __name__ == '__main__':
     logger = setup_logging()
     logger.debug("Logging initialized")
 
-    model = DashCamModel()
+    try:
+        model = DashCamModel()
+        # Print camera info for debugging
+        print(model.get_camera_info())
+    except Exception as e:
+        print(f"Error initializing DashCamModel: {str(e)}")
+        
     presenter = DashCamPresenter(model, logger)
     view = DashCamView(presenter)
 

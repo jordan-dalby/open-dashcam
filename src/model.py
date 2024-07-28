@@ -1,6 +1,4 @@
 from picamera2 import Picamera2, Preview
-from picamera2.outputs import Output
-from libcamera import controls
 from threading import Event
 import time
 
@@ -25,29 +23,42 @@ class DashCamModel:
             'Sharpness': 1,
             'ExposureTime': 0,  # 0 for auto
             'AnalogueGain': 1.0,
-            'AeExposureMode': 0,  # 0 for normal, 1 for short
-            'AwbMode': 0,  # 0 for auto
-            'NoiseReductionMode': 2  # 2 for fast
+            'AeEnable': True,  # Enable auto-exposure
+            'AwbEnable': True,  # Enable auto white balance
         }
         self.initialize_camera()
 
     def initialize_camera(self):
         if self.picam2 is None:
             self.picam2 = Picamera2()
+            
+            # Get the list of controls supported by the camera
+            supported_controls = self.picam2.camera_controls
+
+            # Create a dictionary of supported controls
+            config_controls = {
+                "FrameRate": self.video_quality['fps']
+            }
+
+            # Add supported controls from camera_controls
+            for control, value in self.camera_controls.items():
+                if control in supported_controls:
+                    config_controls[control] = value
+                else:
+                    self.logger.warning(f"Control '{control}' is not supported by this camera.")
+
             video_config = self.picam2.create_video_configuration(
                 main={"size": self.video_quality['resolution']},
-                controls={
-                    "FrameRate": self.video_quality['fps'],
-                    "AeEnable": True,  # Enable auto-exposure
-                    "AeMeteringMode": controls.AeMeteringModeEnum.Matrix,
-                    "AfMode": controls.AfModeEnum.Continuous,  # Enable continuous auto-focus
-                    "AwbEnable": True,  # Enable auto white balance
-                    "AwbMode": controls.AwbModeEnum.Auto
-                }
+                controls=config_controls
             )
-            self.picam2.configure(video_config)
-            self.picam2.set_controls(self.camera_controls)
-            self.picam2.start_preview(Preview.NULL)
+
+            try:
+                self.picam2.configure(video_config)
+                self.picam2.start_preview(Preview.NULL)
+                self.logger.info("Camera initialized successfully")
+            except Exception as e:
+                self.logger.error(f"Error initializing camera: {str(e)}")
+                raise
 
     def start_recording(self):
         if not self.is_recording:
@@ -114,3 +125,11 @@ class DashCamModel:
             "camera_controls": self.camera_controls,
             "storage_limit": self.storage_limit
         }
+    
+    def get_camera_info(self):
+        if self.picam2:
+            return {
+                "supported_controls": self.picam2.camera_controls,
+                "current_config": self.picam2.camera_config
+            }
+        return None
