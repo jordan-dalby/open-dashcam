@@ -76,13 +76,15 @@ class DashCamPresenter:
         try:
             def apply_timestamp(request):
                 timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
-                with request.picam2.controls as controls:
-                    controls.FrameRate = self.model.video_quality['fps']
-                with request.mmap(MappedArray.MAIN) as m:
+                with MappedArray(request, "main") as m:
                     cv2.putText(m.array, timestamp, (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
 
             # Apply the overlay function
             self.model.picam2.pre_callback = apply_timestamp
+
+            # Ensure the camera is configured with the correct frame rate
+            self.model.picam2.video_configuration.controls.FrameRate = self.model.video_quality['fps']
+            self.model.picam2.configure("video")
 
             while not self.model.stop_event.is_set():
                 self._manage_storage()
@@ -91,8 +93,7 @@ class DashCamPresenter:
                 self.logger.debug(f"Creating new video file: {output_file}")
                 
                 encoder = H264Encoder(bitrate=self.model.video_quality['bitrate'])
-                file_output = FfmpegOutput(output_file)
-                output = TimestampOutput(file_output)
+                output = FfmpegOutput(output_file)
 
                 self.model.picam2.start_recording(encoder, output)
                 
