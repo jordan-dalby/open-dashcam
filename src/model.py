@@ -1,5 +1,6 @@
 from picamera2 import Picamera2
 from threading import Event
+import time
 
 class DashCamModel:
     def __init__(self):
