@@ -82,10 +82,6 @@ class DashCamPresenter:
             # Apply the overlay function
             self.model.picam2.pre_callback = apply_timestamp
 
-            # Ensure the camera is configured with the correct frame rate
-            self.model.picam2.video_configuration.controls.FrameRate = self.model.video_quality['fps']
-            self.model.picam2.configure("video")
-
             while not self.model.stop_event.is_set():
                 self._manage_storage()
                 timestamp = time.strftime("%Y%m%d-%H%M%S")
