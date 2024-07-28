@@ -28,13 +28,12 @@ if __name__ == '__main__':
 
     try:
         model = DashCamModel()
-        # Print camera info for debugging
         print(model.get_camera_info())
+        
+        presenter = DashCamPresenter(model, logger)
+        view = DashCamView(presenter)
+
+        logger.info("Starting Flask application")
+        view.run(host='0.0.0.0', port=5000, debug=True)
     except Exception as e:
         print(f"Error initializing DashCamModel: {str(e)}")
-        
-    presenter = DashCamPresenter(model, logger)
-    view = DashCamView(presenter)
-
-    logger.info("Starting Flask application")
-    view.run(host='0.0.0.0', port=5000, debug=True)
