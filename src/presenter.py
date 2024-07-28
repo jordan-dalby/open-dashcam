@@ -153,3 +153,33 @@ class DashCamPresenter:
                 return jsonify({"status": "File not found"}), 404
         else:
             return jsonify({"status": "Invalid request"}), 400
+
+    def lock_recording(self, recording_name):
+        self.logger.debug("Received lock recording request")
+        data = request.json
+        if 'filename' in data:
+            filename = data['filename']
+            file_path = os.path.join(self.recordings_folder, filename)
+            if os.path.exists(file_path):
+                os.chmod(file_path, "0o444")
+                self.logger.info(f"Made {filename} read-only"), 200
+                return jsonify({"status": "Success"})
+            else:
+                return jsonify({"status": "File not found"}), 404
+        else:
+            return jsonify({"status": "Invalid request"}), 400
+
+    def unlock_recording(self, recording_name):
+        self.logger.debug("Received unlock recording request")
+        data = request.json
+        if 'filename' in data:
+            filename = data['filename']
+            file_path = os.path.join(self.recordings_folder, filename)
+            if os.path.exists(file_path):
+                os.chmod(file_path, "0o777") # maybe not 777
+                self.logger.info(f"Made {filename} read and writeable"), 200
+                return jsonify({"status": "Success"})
+            else:
+                return jsonify({"status": "File not found"}), 404
+        else:
+            return jsonify({"status": "Invalid request"}), 400

@@ -15,6 +15,8 @@ class DashCamView:
         self.app.route('/set_camera_controls', methods=['POST'])(self.presenter.set_camera_controls)
         self.app.route('/recordings', methods=['GET'])(self.presenter.get_recordings)
         self.app.route('/delete_recording', methods=['POST'])(self.presenter.delete_recording)
+        self.app.route('/lock', methods=['POST'])(self.presenter.lock_recording)
+        self.app.route('/unlock', methods=['POST'])(self.presenter.unlock_recording)
 
     def run(self, host, port, debug):
         from waitress import serve
