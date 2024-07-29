@@ -166,6 +166,9 @@ class DashCamPresenter:
                 while self.model.is_streaming:
                     buffer = self.model.picam2.capture_buffer("lores")
 
+                    self.logger.debug(f"Captured frame: {buffer}")
+                    self.logger.debug(f"Captured frame shape: {buffer.shape}")
+                    
                     rgb = cv2.cvtColor(buffer, cv2.COLOR_YUV420p2RGB)
 
                     ret, jpeg = cv2.imencode('.jpg', rgb)
