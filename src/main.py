@@ -1,5 +1,6 @@
 from logging.handlers import RotatingFileHandler
 from presenter import DashCamPresenter
+from picamera2 import Picamera2
 from model import DashCamModel
 from view import DashCamView
 import logging
@@ -24,6 +25,7 @@ def setup_logging():
 
 if __name__ == '__main__':
     logger = setup_logging()
+    Picamera2.set_logging(Picamera2.ERROR)
     logger.debug("Logging initialized")
 
     try:
