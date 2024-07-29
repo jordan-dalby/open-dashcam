@@ -53,7 +53,7 @@ class DashCamModel:
 
             video_config = self.picam2.create_video_configuration(
                 main={"size": self.video_quality['resolution'], "format": "RGB888"},
-                lores={"size": self.stream_video_quality['resolution'], "format": "YUV420"},
+                lores={"size": self.stream_video_quality['resolution'], "format": "RGB888"},
                 transform=Transform(vflip=True, hflip=True),
                 controls=config_controls
             )
