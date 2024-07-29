@@ -168,7 +168,7 @@ class DashCamPresenter:
                     h, w = self.model.stream_video_quality['resolution']
 
                     # Assume YUV420 format and reshape buffer accordingly
-                    yuv = numpy.frombuffer(buffer, dtype=numpy.uint8)
+                    yuv = numpy.frombuffer(buffer, dtype=numpy.uint8).reshape((h * 3 // 2, w))
 
                     # Convert YUV420 to BGR (which is the format OpenCV uses by default)
                     bgr = cv2.cvtColor(yuv, cv2.COLOR_YUV2BGR_I420)
