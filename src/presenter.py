@@ -1,11 +1,10 @@
-import os
-import cv2
-import time
-from threading import Thread
-from flask import jsonify, request
-from picamera2 import MappedArray
+from flask import jsonify, request, Response
 from picamera2.outputs import FfmpegOutput
-from picamera2.encoders import H264Encoder
+from picamera2 import MappedArray
+from threading import Thread
+import time
+import cv2
+import os
 
 class DashCamPresenter:
     def __init__(self, model, logger):
@@ -13,6 +12,7 @@ class DashCamPresenter:
         self.logger = logger
         self.recordings_folder = "recordings"
         self.recording_thread = None
+        self.streaming_thread = None
 
         if not os.path.exists(self.recordings_folder):
             os.makedirs(self.recordings_folder)
@@ -35,6 +35,24 @@ class DashCamPresenter:
             return jsonify({"status": "Recording stopped"}), 200
         else:
             return jsonify({"status": "Not recording"}), 400
+
+    def start_streaming(self):
+        self.logger.debug("Received start streaming request")
+        if self.model.start_streaming():
+            self.streaming_thread = Thread(target=self._stream)
+            self.streaming_thread.start()
+            return jsonify({"status": "Streaming started"}), 200
+        else:
+            return jsonify({"status": "Error starting stream"}), 400
+
+    def stop_streaming(self):
+        self.logger.debug("Received stop streaming request")
+        if self.model.stop_streaming():
+            if self.streaming_thread:
+                self.streaming_thread.join()
+            return jsonify({"status": "Streaming stopped"}), 200
+        else:
+            return jsonify({"status": "Not streaming"}), 400
 
     def get_status(self):
         self.logger.debug("Received status request")
@@ -87,10 +105,9 @@ class DashCamPresenter:
                 output_file = os.path.join(self.recordings_folder, f"dashcam_{timestamp}.mp4")
                 self.logger.debug(f"Creating new video file: {output_file}")
                 
-                encoder = H264Encoder(bitrate=self.model.video_quality['bitrate'])
                 output = FfmpegOutput(output_file)
 
-                self.model.picam2.start_recording(encoder, output)
+                self.model.picam2.start_recording(self.model.recording_encoder, output)
                 
                 start_time = time.time()
                 while time.time() - start_time < self.model.clip_duration and not self.model.stop_event.is_set():
@@ -124,6 +141,24 @@ class DashCamPresenter:
                 total_size -= file_size
             else:
                 break
+
+    def _stream(self):
+        self.logger.debug("Entering _stream method")
+        try:
+            while self.model.streaming_event.is_set():
+                frame = self.model.get_stream_frame()
+                yield (b'--frame\r\n'
+                       b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+                time.sleep(1 / self.model.stream_video_quality['fps'])
+        except Exception as e:
+            self.logger.error(f"Error in streaming: {str(e)}")
+        finally:
+            self.logger.debug("Exiting _stream method")
+
+    def video_feed(self):
+        self.logger.debug("Received video feed request")
+        return Response(self._stream(),
+                        mimetype='multipart/x-mixed-replace; boundary=frame')
 
     def _update_camera_settings(self):
         # This method can be called to update camera settings if they've been changed

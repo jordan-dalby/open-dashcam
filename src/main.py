@@ -1,8 +1,8 @@
-import logging
 from logging.handlers import RotatingFileHandler
+from presenter import DashCamPresenter
 from model import DashCamModel
 from view import DashCamView
-from presenter import DashCamPresenter
+import logging
 
 def setup_logging():
     log_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -34,6 +34,6 @@ if __name__ == '__main__':
         view = DashCamView(presenter)
 
         logger.info("Starting Flask application")
-        view.run(host='0.0.0.0', port=5000, debug=True)
+        view.run(host='0.0.0.0', port=5000)
     except Exception as e:
         print(f"Error initializing DashCamModel: {str(e)}")
