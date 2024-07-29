@@ -1,6 +1,7 @@
 from picamera2.encoders import H264Encoder, MJPEGEncoder
+from picamera2.outputs import FileOutput
 from picamera2 import Picamera2, Preview
-from threading import Event, Lock
+from threading import Event
 import logging
 import time
 import io

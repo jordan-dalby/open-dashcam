@@ -4,7 +4,7 @@ import time
 from threading import Thread
 from flask import jsonify, request, Response
 from picamera2 import MappedArray
-from picamera2.outputs import FfmpegOutput, FileOutput
+from picamera2.outputs import FfmpegOutput
 
 class DashCamPresenter:
     def __init__(self, model, logger):
