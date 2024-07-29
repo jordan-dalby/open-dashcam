@@ -22,7 +22,7 @@ class DashCamModel:
         }
         self.stream_video_quality = {
             'resolution': (1280, 720),
-            'fps': 30,
+            'fps': 15,
             'bitrate': 5000000  # 5 Mbps
         }
         self.camera_controls = {

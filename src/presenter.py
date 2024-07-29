@@ -165,7 +165,7 @@ class DashCamPresenter:
             try:
                 while self.model.is_streaming:
                     buffer = self.model.picam2.capture_array("lores")
-                    rgb = cv2.cvtColor(buffer, cv2.COLOR_YUV420p2RGB)
+                    rgb = cv2.cvtColor(buffer, cv2.COLOR_YUV2RGBA_I420)
                     ret, jpeg = cv2.imencode('.jpg', rgb)
                     if not ret:
                         self.logger.error("Failed to encode frame as JPEG")
