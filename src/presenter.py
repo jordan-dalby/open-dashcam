@@ -168,19 +168,6 @@ class DashCamPresenter:
                     h, w = self.model.stream_video_quality['resolution']
                     buffer = buffer[:w * h].reshape(h, w)
 
-                    if isinstance(buffer, numpy.ndarray):
-                        max_dim = self.model.stream_video_quality['resolution'][0]
-                        if h > w:
-                            new_h, new_w = max_dim, int(max_dim * w / h)
-                        else:
-                            new_h, new_w = int(max_dim * h / w), max_dim
-                        resized = cv2.resize(buffer, (new_w, new_h))
-                        
-                        if len(resized.shape) == 2:  # It's grayscale
-                            resized = cv2.cvtColor(resized, cv2.COLOR_GRAY2BGR)
-                        _, jpeg = cv2.imencode('.jpg', resized)
-                        buffer = jpeg.tobytes()
-
                     yield (b'--frame\r\n'
                         b'Content-Type: image/jpeg\r\n\r\n' + buffer + b'\r\n')
                     time.sleep(1 / self.model.stream_video_quality['fps'])
