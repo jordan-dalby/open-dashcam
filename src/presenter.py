@@ -165,13 +165,10 @@ class DashCamPresenter:
             try:
                 while self.model.is_streaming:
                     buffer = self.model.picam2.capture_buffer("lores")
-                    h, w = self.model.stream_video_quality['resolution'] # 620, 480
 
-                    yuv = numpy.frombuffer(buffer, dtype=numpy.uint8).reshape((h, w))
+                    rgb = cv2.cvtColor(buffer, cv2.COLOR_YUV420p2RGB)
 
-                    bgr = cv2.cvtColor(yuv, cv2.COLOR_YUV2BGR_I420)
-
-                    ret, jpeg = cv2.imencode('.jpg', bgr)
+                    ret, jpeg = cv2.imencode('.jpg', rgb)
                     if not ret:
                         self.logger.error("Failed to encode frame as JPEG")
                         continue
