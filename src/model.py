@@ -1,6 +1,6 @@
-from picamera2.encoders import H264Encoder, MJPEGEncoder
 from picamera2.outputs import CircularOutput
 from picamera2 import Picamera2, Preview
+from libcamera import Transform
 from threading import Event
 import logging
 import time
@@ -52,8 +52,9 @@ class DashCamModel:
                     self.logger.warning(f"Control '{control}' is not supported by this camera.")
 
             video_config = self.picam2.create_video_configuration(
-                main={"size": self.video_quality['resolution']},
-                lores={"size": self.stream_video_quality['resolution']},
+                main={"size": self.video_quality['resolution'], "format": "RGB888"},
+                lores={"size": self.stream_video_quality['resolution'], "format": "YUV420"},
+                transform=Transform(vflip=True, hflip=True),
                 controls=config_controls
             )
 

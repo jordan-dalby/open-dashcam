@@ -156,26 +156,32 @@ class DashCamPresenter:
             self.logger.debug("Exiting _stream method")
             self.model.is_streaming = False
 
-    def video_feed(self):
-        self.logger.debug("Received video feed request")
-        if not self.model.is_streaming:
-            return jsonify({"error": "Streaming is not active"}), 400
+def video_feed(self):
+    self.logger.debug("Received video feed request")
+    if not self.model.is_streaming:
+        return jsonify({"error": "Streaming is not active"}), 400
 
-        def generate():
-            try:
-                while self.model.is_streaming:
-                    buffer = self.model.picam2.capture_buffer("lores")
-                    h, w = self.model.stream_video_quality['resolution']
-                    buffer = buffer[:w * h].reshape(h, w)
+    def generate():
+        try:
+            while self.model.is_streaming:
+                buffer = self.model.picam2.capture_buffer("lores")
+                h, w = self.model.stream_video_quality['resolution']
+                buffer = numpy.frombuffer(buffer, dtype=numpy.uint8)[:w * h].reshape(h, w)
 
-                    yield (b'--frame\r\n'
-                        b'Content-Type: image/jpeg\r\n\r\n' + buffer + b'\r\n')
-                    time.sleep(1 / self.model.stream_video_quality['fps'])
-            except Exception as e:
-                self.logger.error(f"Error in video feed: {str(e)}")
+                # Encode the buffer as a JPEG image
+                ret, jpeg = cv2.imencode('.jpg', buffer)
+                if not ret:
+                    self.logger.error("Failed to encode frame as JPEG")
+                    continue
 
-        return Response(generate(),
-                        mimetype='multipart/x-mixed-replace; boundary=frame')
+                yield (b'--frame\r\n'
+                    b'Content-Type: image/jpeg\r\n\r\n' + jpeg.tobytes() + b'\r\n')
+                time.sleep(1 / self.model.stream_video_quality['fps'])
+        except Exception as e:
+            self.logger.error(f"Error in video feed: {str(e)}")
+
+    return Response(generate(),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
 
     def _update_camera_settings(self):
         # This method can be called to update camera settings if they've been changed
