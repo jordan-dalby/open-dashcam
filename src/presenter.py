@@ -163,10 +163,11 @@ class DashCamPresenter:
 
         def generate():
             try:
+                stream_output = self.model.get_stream_output()
                 while self.model.is_streaming:
-                    with self.streaming_output.condition:
-                        self.streaming_output.condition.wait()
-                        frame = self.streaming_output.bytesio.getvalue()
+                    with stream_output.condition:
+                        stream_output.condition.wait()
+                        frame = stream_output.read()
                     yield (b'--frame\r\n'
                            b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
             except Exception as e:
