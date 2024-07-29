@@ -1,11 +1,12 @@
 import os
 import cv2
 import time
+import numpy
 from threading import Thread
 from flask import jsonify, request, Response
 from picamera2 import MappedArray
 from picamera2.encoders import H264Encoder, MJPEGEncoder
-from picamera2.outputs import FfmpegOutput, FileOutput
+from picamera2.outputs import FfmpegOutput
 
 class DashCamPresenter:
     def __init__(self, model, logger):
@@ -164,8 +165,11 @@ class DashCamPresenter:
             try:
                 while self.model.is_streaming:
                     buffer = self.model.picam2.capture_buffer("lores")
+                    if isinstance(buffer, numpy.ndarray):
+                        _, buffer = cv2.imencode('.jpg', buffer)
+                        buffer = buffer.tobytes()
                     yield (b'--frame\r\n'
-                           b'Content-Type: image/jpeg\r\n\r\n' + buffer + b'\r\n')
+                        b'Content-Type: image/jpeg\r\n\r\n' + buffer + b'\r\n')
                     time.sleep(1 / self.model.stream_video_quality['fps'])
             except Exception as e:
                 self.logger.error(f"Error in video feed: {str(e)}")
