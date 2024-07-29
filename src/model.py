@@ -13,9 +13,6 @@ class DashCamModel:
         self.stop_recording_event = Event()
         self.stop_streaming_event = Event()
         self.picam2 = None
-        self.recording_output = None
-        self.streaming_output = None
-        self.stream_output = None
         self.clip_duration = 3 * 60  # 3 minutes per clip
         self.storage_limit = 1024 * 1024 * 1024  # 1 GB
         self.video_quality = {
@@ -38,8 +35,6 @@ class DashCamModel:
             'AeEnable': True,  # Enable auto-exposure
             'AwbEnable': True,  # Enable auto white balance
         }
-        self.recording_encoder = H264Encoder(bitrate=self.video_quality['bitrate'])
-        self.streaming_encoder = MJPEGEncoder(bitrate=self.stream_video_quality['bitrate'])
 
         self.logger = logging.getLogger(__name__)
         self.initialize_camera()
@@ -90,7 +85,6 @@ class DashCamModel:
         if not self.is_streaming:
             self.is_streaming = True
             self.stop_streaming_event.clear()
-            self.stream_output = self.get_stream_output()
             return True
         return False
 
@@ -98,7 +92,6 @@ class DashCamModel:
         if self.is_streaming:
             self.is_streaming = False
             self.stop_streaming_event.set()
-            self.stream_output = None
             return True
         return False
 

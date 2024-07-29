@@ -4,7 +4,8 @@ import time
 from threading import Thread
 from flask import jsonify, request, Response
 from picamera2 import MappedArray
-from picamera2.outputs import FfmpegOutput
+from picamera2.encoders import H264Encoder, MJPEGEncoder
+from picamera2.outputs import FfmpegOutput, FileOutput
 
 class DashCamPresenter:
     def __init__(self, model, logger):
@@ -13,6 +14,8 @@ class DashCamPresenter:
         self.recordings_folder = "recordings"
         self.recording_thread = None
         self.streaming_thread = None
+        self.recording_encoder = H264Encoder(bitrate=self.model.video_quality['bitrate'])
+        self.streaming_encoder = MJPEGEncoder(bitrate=self.model.stream_video_quality['bitrate'])
 
         if not os.path.exists(self.recordings_folder):
             os.makedirs(self.recordings_folder)
@@ -39,8 +42,6 @@ class DashCamPresenter:
     def start_streaming(self):
         self.logger.debug("Received start streaming request")
         if self.model.start_streaming():
-            self.streaming_output = self.model.get_stream_output()
-            self.model.picam2.start_encoder(self.model.streaming_encoder, self.streaming_output, name="lores")
             self.streaming_thread = Thread(target=self._stream)
             self.streaming_thread.start()
             return jsonify({"status": "Streaming started"}), 200
@@ -52,8 +53,6 @@ class DashCamPresenter:
         if self.model.stop_streaming():
             if self.streaming_thread:
                 self.streaming_thread.join()
-            self.model.picam2.stop_encoder(name="lores")
-            self.streaming_output = None
             return jsonify({"status": "Streaming stopped"}), 200
         else:
             return jsonify({"status": "Not streaming"}), 400
@@ -110,7 +109,7 @@ class DashCamPresenter:
                 
                 output = FfmpegOutput(output_file)
 
-                self.model.picam2.start_recording(self.model.recording_encoder, output)
+                self.model.picam2.start_recording(self.recording_encoder, output)
                 
                 start_time = time.time()
                 while time.time() - start_time < self.model.clip_duration and not self.model.stop_recording_event.is_set():
@@ -163,13 +162,11 @@ class DashCamPresenter:
 
         def generate():
             try:
-                stream_output = self.model.get_stream_output()
                 while self.model.is_streaming:
-                    with stream_output.condition:
-                        stream_output.condition.wait()
-                        frame = stream_output.read()
+                    buffer = self.model.picam2.capture_buffer("lores")
                     yield (b'--frame\r\n'
-                           b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+                           b'Content-Type: image/jpeg\r\n\r\n' + buffer + b'\r\n')
+                    time.sleep(1 / self.model.stream_video_quality['fps'])
             except Exception as e:
                 self.logger.error(f"Error in video feed: {str(e)}")
 
