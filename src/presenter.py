@@ -199,7 +199,7 @@ class DashCamPresenter:
         else:
             return jsonify({"status": "Invalid request"}), 400
 
-    def lock_recording(self, recording_name):
+    def lock_recording(self):
         self.logger.debug("Received lock recording request")
         data = request.json
         if 'filename' in data:
@@ -214,7 +214,7 @@ class DashCamPresenter:
         else:
             return jsonify({"status": "Invalid request"}), 400
 
-    def unlock_recording(self, recording_name):
+    def unlock_recording(self):
         self.logger.debug("Received unlock recording request")
         data = request.json
         if 'filename' in data:
