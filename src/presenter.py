@@ -164,7 +164,7 @@ class DashCamPresenter:
         def generate():
             try:
                 while self.model.is_streaming:
-                    buffer = self.model.picam2.capture_buffer("lores")
+                    buffer = self.model.picam2.capture_array("lores")
 
                     self.logger.debug(f"Captured frame: {buffer}")
                     self.logger.debug(f"Captured frame shape: {buffer.shape}")
