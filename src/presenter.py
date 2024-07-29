@@ -1,10 +1,10 @@
-from flask import jsonify, request, Response
-from picamera2.outputs import FfmpegOutput
-from picamera2 import MappedArray
-from threading import Thread
-import time
-import cv2
 import os
+import cv2
+import time
+from threading import Thread
+from flask import jsonify, request, Response
+from picamera2 import MappedArray
+from picamera2.outputs import FfmpegOutput, FileOutput
 
 class DashCamPresenter:
     def __init__(self, model, logger):
@@ -39,17 +39,21 @@ class DashCamPresenter:
     def start_streaming(self):
         self.logger.debug("Received start streaming request")
         if self.model.start_streaming():
+            self.streaming_output = self.model.get_stream_output()
+            self.model.picam2.start_encoder(self.model.streaming_encoder, self.streaming_output, name="lores")
             self.streaming_thread = Thread(target=self._stream)
             self.streaming_thread.start()
             return jsonify({"status": "Streaming started"}), 200
         else:
-            return jsonify({"status": "Error starting stream"}), 400
+            return jsonify({"status": "Already streaming"}), 400
 
     def stop_streaming(self):
         self.logger.debug("Received stop streaming request")
         if self.model.stop_streaming():
             if self.streaming_thread:
                 self.streaming_thread.join()
+            self.model.picam2.stop_encoder(name="lores")
+            self.streaming_output = None
             return jsonify({"status": "Streaming stopped"}), 200
         else:
             return jsonify({"status": "Not streaming"}), 400
@@ -96,10 +100,9 @@ class DashCamPresenter:
                 with MappedArray(request, "main") as m:
                     cv2.putText(m.array, timestamp, (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
 
-            # Apply the overlay function
             self.model.picam2.pre_callback = apply_timestamp
 
-            while not self.model.stop_event.is_set():
+            while not self.model.stop_recording_event.is_set():
                 self._manage_storage()
                 timestamp = time.strftime("%Y%m%d-%H%M%S")
                 output_file = os.path.join(self.recordings_folder, f"dashcam_{timestamp}.mp4")
@@ -110,7 +113,7 @@ class DashCamPresenter:
                 self.model.picam2.start_recording(self.model.recording_encoder, output)
                 
                 start_time = time.time()
-                while time.time() - start_time < self.model.clip_duration and not self.model.stop_event.is_set():
+                while time.time() - start_time < self.model.clip_duration and not self.model.stop_recording_event.is_set():
                     time.sleep(1)  # Sleep for 1 second to reduce CPU usage
                 
                 self.model.picam2.stop_recording()
@@ -145,19 +148,31 @@ class DashCamPresenter:
     def _stream(self):
         self.logger.debug("Entering _stream method")
         try:
-            while self.model.streaming_event.is_set():
-                frame = self.model.get_stream_frame()
-                yield (b'--frame\r\n'
-                       b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-                time.sleep(1 / self.model.stream_video_quality['fps'])
+            while not self.model.stop_streaming_event.is_set():
+                time.sleep(0.1)  # Small delay to prevent busy-waiting
         except Exception as e:
             self.logger.error(f"Error in streaming: {str(e)}")
         finally:
             self.logger.debug("Exiting _stream method")
+            self.model.is_streaming = False
 
     def video_feed(self):
         self.logger.debug("Received video feed request")
-        return Response(self._stream(),
+        if not self.model.is_streaming:
+            return jsonify({"error": "Streaming is not active"}), 400
+
+        def generate():
+            try:
+                while self.model.is_streaming:
+                    with self.streaming_output.condition:
+                        self.streaming_output.condition.wait()
+                        frame = self.streaming_output.bytesio.getvalue()
+                    yield (b'--frame\r\n'
+                           b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+            except Exception as e:
+                self.logger.error(f"Error in video feed: {str(e)}")
+
+        return Response(generate(),
                         mimetype='multipart/x-mixed-replace; boundary=frame')
 
     def _update_camera_settings(self):

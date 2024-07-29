@@ -8,9 +8,12 @@ import io
 class DashCamModel:
     def __init__(self):
         self.is_recording = False
-        self.stop_event = Event()
+        self.is_streaming = False
+        self.stop_recording_event = Event()
+        self.stop_streaming_event = Event()
         self.picam2 = None
-        self.output = None
+        self.recording_output = None
+        self.streaming_output = None
         self.clip_duration = 3 * 60  # 3 minutes per clip
         self.storage_limit = 1024 * 1024 * 1024  # 1 GB
         self.video_quality = {
@@ -36,10 +39,6 @@ class DashCamModel:
         self.recording_encoder = H264Encoder(bitrate=self.video_quality['bitrate'])
         self.streaming_encoder = MJPEGEncoder(bitrate=self.stream_video_quality['bitrate'])
 
-        self.streaming_output = None
-        self.streaming_event = Event()
-        self.stream_lock = Lock()
-
         self.logger = logging.getLogger(__name__)
         self.initialize_camera()
 
@@ -47,15 +46,8 @@ class DashCamModel:
         if self.picam2 is None:
             self.picam2 = Picamera2()
             
-            # Get the list of controls supported by the camera
             supported_controls = self.picam2.camera_controls
-
-            # Create a dictionary of supported controls
-            config_controls = {
-                "FrameRate": self.video_quality['fps']
-            }
-
-            # Add supported controls from camera_controls
+            config_controls = {"FrameRate": self.video_quality['fps']}
             for control, value in self.camera_controls.items():
                 if control in supported_controls:
                     config_controls[control] = value
@@ -71,6 +63,8 @@ class DashCamModel:
             try:
                 self.picam2.configure(video_config)
                 self.picam2.start_preview(Preview.NULL)
+                self.picam2.start()
+                time.sleep(2)  # Allow auto focus and exposure to settle
                 self.logger.info("Camera initialized successfully")
             except Exception as e:
                 self.logger.error(f"Error initializing camera: {str(e)}")
@@ -79,30 +73,33 @@ class DashCamModel:
     def start_recording(self):
         if not self.is_recording:
             self.is_recording = True
-            self.stop_event.clear()
-            if not self.picam2.started:
-                self.picam2.start()
-                time.sleep(2)  # Allow auto focus and exposure to settle
+            self.stop_recording_event.clear()
             return True
         return False
 
     def stop_recording(self):
         if self.is_recording:
             self.is_recording = False
-            self.stop_event.set()
+            self.stop_recording_event.set()
             return True
         return False
 
     def start_streaming(self):
-        if not self.picam2.started:
-            self.picam2.start()
-            time.sleep(2)  # Allow auto focus and exposure to settle
-        self.streaming_event.set()
-        return True
+        if not self.is_streaming:
+            self.is_streaming = True
+            self.stop_streaming_event.clear()
+            return True
+        return False
 
     def stop_streaming(self):
-        self.streaming_event.clear()
-        return True
+        if self.is_streaming:
+            self.is_streaming = False
+            self.stop_streaming_event.set()
+            return True
+        return False
+
+    def get_stream_output(self):
+        return FileOutput()
 
     def get_stream_frame(self):
         with self.stream_lock:
