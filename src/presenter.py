@@ -167,6 +167,7 @@ class DashCamPresenter:
                     buffer = self.model.picam2.capture_buffer("lores")
                     if isinstance(buffer, numpy.ndarray):
                         max_dim = self.model.stream_video_quality['resolution'][0]
+                        self.logger.debug(f"Test1")
                         h, w = buffer.shape[:2]
                         if h > w:
                             new_h, new_w = max_dim, int(max_dim * w / h)
@@ -176,7 +177,7 @@ class DashCamPresenter:
                         
                         if len(resized.shape) == 2:  # It's grayscale
                             resized = cv2.cvtColor(resized, cv2.COLOR_GRAY2BGR)
-                        
+                        self.logger.debug(f"Test2")
                         buffer = cv2.imencode('.jpg', resized)[1]
                         buffer = buffer.tobytes()
                     yield (b'--frame\r\n'
