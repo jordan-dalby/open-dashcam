@@ -177,7 +177,7 @@ class DashCamPresenter:
                         if len(resized.shape) == 2:  # It's grayscale
                             resized = cv2.cvtColor(resized, cv2.COLOR_GRAY2BGR)
                         
-                        _, buffer = cv2.imencode('.jpg', resized)
+                        buffer = cv2.imencode('.jpg', resized)[1]
                         buffer = buffer.tobytes()
                     yield (b'--frame\r\n'
                         b'Content-Type: image/jpeg\r\n\r\n' + buffer + b'\r\n')
