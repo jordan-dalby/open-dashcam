@@ -107,7 +107,7 @@ class DashCamModel:
     def get_stream_frame(self):
         with self.stream_lock:
             self.streaming_output = io.BytesIO()
-            self.picam2.capture_file(self.streaming_output, format='jpeg', use_video_port=True)
+            self.picam2.capture_file(self.streaming_output, format='jpeg')
             frame = self.streaming_output.getvalue()
         return frame
 
