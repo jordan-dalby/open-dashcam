@@ -1,5 +1,6 @@
 from dashcam.streamers.base_streamer import BaseStreamer
 from picamera2.encoders import H264Encoder
+import time
 
 class FileStreamer(BaseStreamer):
     def __init__(self, settings: dict) -> None:
@@ -17,5 +18,11 @@ class FileStreamer(BaseStreamer):
     def _start(self) -> None:
         super()._start()
         while not self.stop_event.is_set():
-            pass
+            try:
+                self.dashcam.picam2.start_encoder(self.encoder)
+                self.dashcam.picam2.start_recording()
+                while not self.stop_event.is_set():
+                    time.sleep(0.1)
+            finally:
+                self.dashcam.picam2.stop_recording()
         print("FileStreamer stopped")

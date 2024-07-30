@@ -15,4 +15,4 @@ if __name__ == "__main__":
     dashcam.start_streaming()
 
     server = DashcamWebServer(dashcam=dashcam)
-    Thread(server.start_server()).start()
+    Thread(target=server.start_server).start()

@@ -12,7 +12,7 @@ class BaseStreamer():
         if self.is_streaming:
             self.stop_event.clear()
             return {"message": "Already streaming"}, 400
-        Thread(self._start()).start()
+        Thread(target=self._start).start()
         self.is_streaming = True
         return {"message": "Started streaming"}, 200
 
