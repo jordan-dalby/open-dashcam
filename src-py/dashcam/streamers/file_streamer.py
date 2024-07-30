@@ -3,7 +3,7 @@ from picamera2.encoders import H264Encoder
 
 class FileStreamer(BaseStreamer):
     def __init__(self, settings: dict) -> None:
-        super().__init__(settings, H264Encoder())
+        super().__init__(settings, H264Encoder(settings['bitrate']))
 
     def start(self) -> bool:
         return super().start()

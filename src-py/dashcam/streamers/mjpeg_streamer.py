@@ -3,7 +3,7 @@ from picamera2.encoders import MJPEGEncoder
 
 class MJPEGStreamer(BaseStreamer):
     def __init__(self, settings: dict) -> None:
-        super().__init__(settings, MJPEGEncoder())
+        super().__init__(settings, MJPEGEncoder(settings['bitrate']))
 
     def start(self) -> bool:
         return super().start()
