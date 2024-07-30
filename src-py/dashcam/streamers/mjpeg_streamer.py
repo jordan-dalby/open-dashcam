@@ -5,10 +5,10 @@ class MJPEGStreamer(BaseStreamer):
     def __init__(self, settings: dict) -> None:
         super().__init__(settings, MJPEGEncoder(settings['bitrate']))
 
-    def start(self) -> bool:
+    def start(self):
         return super().start()
 
-    def stop(self) -> bool:
+    def stop(self):
         return super().stop()
 
     def set_settings(self, settings: dict) -> None:
