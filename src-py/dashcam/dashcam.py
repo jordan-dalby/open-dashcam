@@ -42,7 +42,7 @@ class Dashcam():
                 self.picam2.start_preview()
                 self.picam2.start()
 
-                self.picam2.start_encoder(self.filestreamer.encoder)
+                # start_recording will start the filestreamer encoder, we don't need to do it manually
                 self.picam2.start_encoder(self.mjpegstreamer.encoder)
 
                 time.sleep(2)  # Allow auto focus and exposure to settle
