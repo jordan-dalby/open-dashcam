@@ -2,10 +2,12 @@ from dashcam.streamers.base_streamer import BaseStreamer
 from picamera2.encoders import H264Encoder
 from picamera2.outputs import FfmpegOutput
 import time
+import os
 
 class FileStreamer(BaseStreamer):
     def __init__(self, dashcam, settings: dict) -> None:
         super().__init__(dashcam, settings, H264Encoder(settings['bitrate']))
+        self.directory = settings['directory']
         self.extension = settings['extension']
         self.clip_duration = settings['clip_duration']
 
@@ -28,7 +30,7 @@ class FileStreamer(BaseStreamer):
                 file_name = self._get_next_file_name()
                 print(f"Clip started: {file_name}")
 
-                output = FfmpegOutput(file_name)
+                output = FfmpegOutput(os.path.join(self.directory, file_name))
                 self.dashcam.picam2.start_recording(self.encoder, output)
 
                 start_time = time.time()
