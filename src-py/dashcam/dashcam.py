@@ -11,6 +11,8 @@ class Dashcam():
                 'resolution': (1920, 1080),
                 'fps': 30,
                 'bitrate': 10000000, # 10Mbps
+                'extension': 'mp4',
+                'clip_duration': 3 * 60, # 3 minutes per clip
             },
             'streaming': {
                 'resolution': (1280, 720),
@@ -21,6 +23,8 @@ class Dashcam():
         self.picam2 = None
         self.filestreamer = FileStreamer(self, self.settings['recording'])
         self.mjpegstreamer = MJPEGStreamer(self, self.settings['streaming'])
+
+        print(self.filestreamer.is_streaming)
 
         self.initialise_camera()
 

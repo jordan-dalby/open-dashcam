@@ -19,10 +19,10 @@ class MJPEGStreamer(BaseStreamer):
         super()._start()
         while not self.stop_event.is_set():
             try:
-                self.dashcam.picam2.start_encoder(self.encoder)
                 #self.dashcam.picam2.start_recording()
                 while not self.stop_event.is_set():
                     time.sleep(0.1)
             finally:
                 self.dashcam.picam2.stop_recording()
         print("FileStreamer stopped")
+        self.is_streaming = False
