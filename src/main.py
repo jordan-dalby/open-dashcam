@@ -1,41 +1,18 @@
-from logging.handlers import RotatingFileHandler
-from presenter import DashCamPresenter
-from picamera2 import Picamera2
-from model import DashCamModel
-from view import DashCamView
-import logging
+'''
+Dashcam - Class to manage the dashcam operations, start, stop, etc...
+FileStreamer - Class to manage streaming video to files
+MJPEGStreamer - Class to manage streaming video to MJPEG
+DashcamWebServer - Class to manage the web server for the dashcam, has all of the endpoints
+StorageManager - Class to manage the storage of the dashcam, deleting old files, etc...
+'''
+from dashcam.dashcam import Dashcam
+from dashcam.api.web_server import DashcamWebServer
+from threading import Thread
 
-def setup_logging():
-    log_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    log_file = 'dashcam.log'
-    log_handler = RotatingFileHandler(log_file, maxBytes=1024 * 1024, backupCount=5)
-    log_handler.setFormatter(log_formatter)
-    log_handler.setLevel(logging.DEBUG)
+if __name__ == "__main__":
+    dashcam = Dashcam()
+    dashcam.start_recording()
+    dashcam.start_streaming()
 
-    console_handler = logging.StreamHandler()
-    console_handler.setFormatter(log_formatter)
-    console_handler.setLevel(logging.DEBUG)
-
-    logger = logging.getLogger()
-    logger.setLevel(logging.DEBUG)
-    logger.addHandler(log_handler)
-    logger.addHandler(console_handler)
-
-    return logger
-
-if __name__ == '__main__':
-    logger = setup_logging()
-    Picamera2.set_logging(Picamera2.ERROR)
-    logger.debug("Logging initialized")
-
-    try:
-        model = DashCamModel()
-        print(model.get_camera_info())
-        
-        presenter = DashCamPresenter(model, logger)
-        view = DashCamView(presenter)
-
-        logger.info("Starting Flask application")
-        view.run(host='0.0.0.0', port=5000)
-    except Exception as e:
-        print(f"Error initializing DashCamModel: {str(e)}")
+    server = DashcamWebServer(dashcam=dashcam)
+    Thread(target=server.start_server).start()
