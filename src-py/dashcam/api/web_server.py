@@ -7,7 +7,7 @@ class DashcamWebServer():
         self.dashcam = dashcam
         self.setup_routes()
 
-    def setup_endpoints(self):
+    def setup_routes(self):
         @self.app.route('/start_recording', methods=['POST'])
         def start_recording():
             result, status_code = self.dashcam.start_recording()
