@@ -19,8 +19,8 @@ class Dashcam():
             }
         }
         self.picam2 = None
-        self.filestreamer = FileStreamer(self.settings['recording'])
-        self.mjpegstreamer = MJPEGStreamer(self.settings['streaming'])
+        self.filestreamer = FileStreamer(self, self.settings['recording'])
+        self.mjpegstreamer = MJPEGStreamer(self, self.settings['streaming'])
 
         self.initialise_camera()
 

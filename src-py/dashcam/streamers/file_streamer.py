@@ -1,10 +1,11 @@
 from dashcam.streamers.base_streamer import BaseStreamer
 from picamera2.encoders import H264Encoder
+from dashcam.dashcam import Dashcam
 import time
 
 class FileStreamer(BaseStreamer):
-    def __init__(self, settings: dict) -> None:
-        super().__init__(settings, H264Encoder(settings['bitrate']))
+    def __init__(self, dashcam: Dashcam, settings: dict) -> None:
+        super().__init__(dashcam, settings, H264Encoder(settings['bitrate']))
 
     def start(self):
         return super().start()
