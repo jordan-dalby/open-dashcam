@@ -38,12 +38,13 @@ class Dashcam():
             )
 
             try:
-                self.picam2.start_encoder(self.filestreamer.encoder)
-                self.picam2.start_encoder(self.mjpegstreamer.encoder)
-
                 self.picam2.configure(video_config)
                 self.picam2.start_preview()
                 self.picam2.start()
+
+                self.picam2.start_encoder(self.filestreamer.encoder)
+                self.picam2.start_encoder(self.mjpegstreamer.encoder)
+
                 time.sleep(2)  # Allow auto focus and exposure to settle
             except Exception as e:
                 raise Exception(f"Error initializing camera: {str(e)}")
