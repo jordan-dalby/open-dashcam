@@ -12,7 +12,7 @@ class Dashcam():
                 'fps': 30,
                 'bitrate': 10000000, # 10Mbps
                 'extension': 'mp4',
-                'directory': '/recordings',
+                'directory': 'recordings',
                 'clip_duration': 3 * 60, # 3 minutes per clip
             },
             'streaming': {
