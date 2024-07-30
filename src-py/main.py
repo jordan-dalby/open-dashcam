@@ -7,6 +7,7 @@ StorageManager - Class to manage the storage of the dashcam, deleting old files,
 '''
 from dashcam.dashcam import Dashcam
 from dashcam.api.web_server import DashcamWebServer
+from threading import Thread
 
 if __name__ == "__main__":
     dashcam = Dashcam()
@@ -14,4 +15,4 @@ if __name__ == "__main__":
     dashcam.start_streaming()
 
     server = DashcamWebServer(dashcam=dashcam)
-    server.start_server()
+    Thread(server.start_server()).start()

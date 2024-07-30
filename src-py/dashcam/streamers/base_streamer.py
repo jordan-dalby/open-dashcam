@@ -1,5 +1,5 @@
 from picamera2.encoders import Encoder
-from threading import Event
+from threading import Event, Thread
 
 class BaseStreamer():
     def __init__(self, settings: dict, encoder: Encoder) -> None:
@@ -11,7 +11,7 @@ class BaseStreamer():
     def start(self):
         if self.is_streaming:
             self.stop_event.clear()
-            self._start()
+            Thread(self._start()).start()
             return {"message": "Already streaming"}, 400
         self.is_streaming = True
         return {"message": "Started streaming"}, 200
