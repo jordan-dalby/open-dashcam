@@ -5,7 +5,7 @@ from flask import jsonify
 class BaseStreamer():
     def __init__(self, settings: dict, encoder: Encoder) -> None:
         self.settings = settings
-        self.streamer = encoder()
+        self.encoder = encoder
         self.stop_event = Event()
         self.is_streaming = False
 
