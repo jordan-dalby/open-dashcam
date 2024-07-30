@@ -41,20 +41,20 @@ class Dashcam():
             except Exception as e:
                 raise Exception(f"Error initializing camera: {str(e)}")
 
-    def start_recording(self) -> None:
-        self.filestreamer.start()
+    def start_recording(self):
+        return self.filestreamer.start()
 
-    def stop_recording(self) -> None:
-        self.filestreamer.stop()
+    def stop_recording(self):
+        return self.filestreamer.stop()
 
-    def start_streaming(self) -> None:
-        self.mjpegstreamer.start()
+    def start_streaming(self):
+        return self.mjpegstreamer.start()
 
-    def stop_streaming(self) -> None:
-        self.mjpegstreamer.stop()
+    def stop_streaming(self):
+        return self.mjpegstreamer.stop()
     
-    def set_recording_settings(self, settings: dict) -> None:
-        self.filestreamer.set_settings(settings)
+    def set_recording_settings(self, settings: dict):
+        return self.filestreamer.set_settings(settings)
 
-    def set_streaming_settings(self, settings: dict) -> None:
-        self.mjpegstreamer.set_settings(settings)
+    def set_streaming_settings(self, settings: dict):
+        return self.mjpegstreamer.set_settings(settings)
