@@ -11,6 +11,9 @@ class FileStreamer(BaseStreamer):
         self.extension = settings['extension']
         self.clip_duration = settings['clip_duration']
 
+        if not os.path.exists(self.directory):
+            os.makedirs(self.directory)
+
     def start(self):
         return super().start()
 
