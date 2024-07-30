@@ -1,4 +1,4 @@
-from base_streamer import BaseStreamer
+from dashcam.streamers.base_streamer import BaseStreamer
 from picamera2.encoders import MJPEGEncoder
 
 class MJPEGStreamer(BaseStreamer):
