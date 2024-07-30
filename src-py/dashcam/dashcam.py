@@ -2,6 +2,7 @@ from dashcam.streamers.mjpeg_streamer import MJPEGStreamer
 from dashcam.streamers.file_streamer import FileStreamer
 from libcamera import Transform
 from picamera2 import Picamera2
+from flask import jsonify
 import time
 
 class Dashcam():
@@ -42,16 +43,16 @@ class Dashcam():
                 raise Exception(f"Error initializing camera: {str(e)}")
 
     def start_recording(self):
-        return self.filestreamer.start()
+        return jsonify(self.filestreamer.start())
 
     def stop_recording(self):
-        return self.filestreamer.stop()
+        return jsonify(self.filestreamer.stop())
 
     def start_streaming(self):
-        return self.mjpegstreamer.start()
+        return jsonify(self.mjpegstreamer.start())
 
     def stop_streaming(self):
-        return self.mjpegstreamer.stop()
+        return jsonify(self.mjpegstreamer.stop())
     
     def set_recording_settings(self, settings: dict):
         return self.filestreamer.set_settings(settings)

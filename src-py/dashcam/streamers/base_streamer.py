@@ -1,6 +1,5 @@
 from picamera2.encoders import Encoder
 from threading import Event
-from flask import jsonify
 
 class BaseStreamer():
     def __init__(self, settings: dict, encoder: Encoder) -> None:
@@ -13,16 +12,16 @@ class BaseStreamer():
         if self.is_streaming:
             self.stop_event.clear()
             self._start()
-            return jsonify({"message": "Already streaming"}), 400
+            return {"message": "Already streaming"}, 400
         self.is_streaming = True
-        return jsonify({"message": "Started streaming"}), 200
+        return {"message": "Started streaming"}, 200
 
     def stop(self):
         if not self.is_streaming:
-            return jsonify({"message": "Not streaming"}), 400
+            return {"message": "Not streaming"}, 400
         self.stop_event.set()
         self.is_streaming = False
-        return jsonify({"message": "Stopped streaming"}), 200
+        return {"message": "Stopped streaming"}, 200
 
     def set_settings(self, settings: dict) -> None:
         self.settings = settings
