@@ -1,9 +1,8 @@
 from picamera2.encoders import Encoder
 from threading import Event, Thread
-from dashcam.dashcam import Dashcam
 
 class BaseStreamer():
-    def __init__(self, dashcam: Dashcam, settings: dict, encoder: Encoder) -> None:
+    def __init__(self, dashcam, settings: dict, encoder: Encoder) -> None:
         self.dashcam = dashcam
         self.settings = settings
         self.encoder = encoder

@@ -1,10 +1,9 @@
 from dashcam.streamers.base_streamer import BaseStreamer
 from picamera2.encoders import MJPEGEncoder
-from dashcam.dashcam import Dashcam
 import time
 
 class MJPEGStreamer(BaseStreamer):
-    def __init__(self, dashcam: Dashcam, settings: dict) -> None:
+    def __init__(self, dashcam, settings: dict) -> None:
         super().__init__(dashcam, settings, MJPEGEncoder(settings['bitrate']))
 
     def start(self):
